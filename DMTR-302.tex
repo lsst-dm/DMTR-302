@@ -1,33 +1,206 @@
-\documentclass[DM,lsstdraft,toc]{lsstdoc}
+% generated from JIRA project LVV
+% using template at /Users/womullan/LSSTgit/docsteady/docsteady/templates/tpr.latex.jinja2.
+% using docsteady version 2.0.post11+g001b6f3.d20210218
+% Please do not edit -- update information in Jira instead
+\documentclass[dm,lsstdraft,STR,toc]{lsstdoc}
 \usepackage{geometry}
 \usepackage{longtable,booktabs}
 \usepackage{enumitem}
 \usepackage{arydshln}
+\usepackage{attachfile}
+\usepackage{array}
+\usepackage{dashrule}
 
-\input{meta.tex}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
+\input meta.tex
+
+\newcommand{\attachmentsUrl}{https://github.com/\gitorg/\lsstDocType-\lsstDocNum/blob/\gitref/attachments}
 \providecommand{\tightlist}{
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+\setcounter{tocdepth}{4}
+
 \begin{document}
 
-\def\milestoneName{LDM-503-13a}
-\def\milestoneId{LVV-P82}
-\def\product{Data Management}
+\def\milestoneName{Science Pipelines Fall 2020 Release}
+\def\milestoneId{LDM-503-13a}
+\def\product{Science Pipelines SW}
 
 \setDocCompact{true}
 
-\title{LVV-P82 LDM-503-13a Test Plan and Report}
+\title{LDM-503-13a: Science Pipelines Fall 2020 Release Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
-\date{\vcsDate}
-\author{Yusra AlSayyad}
+\date{ 2021-04-09 }
+\author{ Yusra AlSayyad }
 
 \input{history_and_info.tex}
 
+
 \setDocAbstract{
-This is a stub test report created from a template.
-The content is being prepared.
+This is the test plan and report for
+\textbf{ Science Pipelines Fall 2020 Release} (LDM-503-13a),
+an LSST milestone pertaining to the Data Management Subsystem.\\
+This document is based on content automatically extracted from the Jira test database on \docDate.
+The most recent change to the document repository was on \vcsDate.
 }
 
+
 \maketitle
+
+\section{Introduction}
+\label{sect:intro}
+
+
+\subsection{Objectives}
+\label{sect:objectives}
+
+ This test plan checks for the successful release of the Fall 2020
+release of the LSST Science Pipelines (Pipelines release version
+21.0.0).\\[2\baselineskip]It will demonstrate that:\\[2\baselineskip]
+
+\begin{itemize}
+\tightlist
+\item
+  The release has been tagged, built and made available through standard
+  distribution channels;
+\item
+  Release documentation, including release notes and a characterization
+  report, are available on the LSST Pipelines documentation website
+  (https://pipelines.lsst.io/);
+\item
+  An end-user can follow standard instructions to install the release
+  onto some representative system;
+\item
+  The release is installed into the ``shared stack'' on the lsst-dev
+  shared developer systems and the Verification Cluster at the LSST Data
+  Facility;
+\item
+  The lsst\_dm\_stack\_demo test package executes successfully in the
+  context of the release.
+\end{itemize}
+
+This test plan does not, in itself, verify the scientific integrity or
+algorithmic correctness of the release, beyond checking that defined
+procedures for checking basic correctness and characterizing algorithmic
+performance have been followed.\\[2\baselineskip]
+
+\subsection{Scope}\label{scope}
+
+The overall strategy for testing and verification within LSST Data
+Management is described in \citeds{LDM-503}.\\
+This test plan specifically verifies successful completion of milestone
+LDM-503-13a, which refers to the Fall 2020 release of the LSST Science
+Pipelines.
+
+
+
+\subsection{System Overview}
+\label{sect:systemoverview}
+
+
+
+\subsection{Document Overview}
+\label{sect:docoverview}
+
+This document was generated from Jira, obtaining the relevant information from the
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82}
+~Jira Test Plan and related Test Cycles (
+).
+
+Section \ref{sect:intro} provides an overview of the test campaign, the system under test (\product{}),
+the applicable documentation, and explains how this document is organized.
+Section \ref{sect:testplan} provides additional information about the test plan, like for example the configuration
+used for this test or related documentation.
+Section \ref{sect:personnel} describes the necessary roles and lists the individuals assigned to them.
+
+Section \ref{sect:overview} provides a summary of the test results, including an overview in Table \ref{table:summary},
+an overall assessment statement and suggestions for possible improvements.
+Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
+
+The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82} in Jira is \textbf{ Draft }.
+
+\subsection{References}
+\label{sect:references}
+\renewcommand{\refname}{}
+\bibliography{lsst,refs,books,refs_ads,local}
+
+
+\newpage
+\section{Test Plan Details}
+\label{sect:testplan}
+
+
+\subsection{Data Collection}
+
+  Observing is not required for this test campaign.
+
+\subsection{Verification Environment}
+\label{sect:hwconf}
+
+
+
+
+\subsection{Related Documentation}
+
+
+No additional documentation provided.
+
+
+\subsection{PMCS Activity}
+
+Primavera milestones related to the test campaign:
+\begin{itemize}
+\item LDM-503-13a
+\end{itemize}
+
+
+\newpage
+\section{Personnel}
+\label{sect:personnel}
+
+The personnel involved in the test campaign is shown in the following table.
+
+{\small
+\begin{longtable}{p{3cm}p{3cm}p{3cm}p{6cm}}
+\hline
+\multicolumn{2}{r}{T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82} owner:} &
+\multicolumn{2}{l}{\textbf{ Yusra AlSayyad } }\\\hline
+\end{longtable}
+}
+
+\newpage
+
+\section{Test Campaign Overview}
+\label{sect:overview}
+
+\subsection{Summary}
+\label{sect:summarytable}
+
+{\small
+\begin{longtable}{p{2cm}cp{2.3cm}p{8.6cm}p{2.3cm}}
+\toprule
+\multicolumn{2}{r}{ T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82}:} &
+\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-13a: Science Pipelines Fall 2020 Release }} & Draft \\\hline
+\caption{Test Campaign Summary}
+\label{table:summary}
+\end{longtable}
+}
+
+\subsection{Overall Assessment}
+\label{sect:overallassessment}
+
+Not yet available.
+
+\subsection{Recommended Improvements}
+\label{sect:recommendations}
+
+Not yet available.
+
+\newpage
+\section{Detailed Test Results}
+\label{sect:detailedtestresults}
+
+
+\input{appendix.tex}
 \end{document}
