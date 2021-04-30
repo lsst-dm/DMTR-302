@@ -553,13 +553,7 @@ Successful execution will result in the string ``Ok'' being returned.
 The pipeline\_check completed successfully with a minor deviation of the
 instructions on the package README. ~The instructions for execution were
 to\\
-
-\begin{verbatim}
-$ source $LSST_HOME/loadLSST.sh
-$ setup -r .
-$ ./bin/run_demo.sh
-\end{verbatim}
-
+\texttt{\$\ source\ \$LSST\_HOME/loadLSST.sh\$\ setup\ -r\ .\$\ ./bin/run\_demo.sh}\\
 loadLSST is spelled loadLSST.bash for bash, and the `setup' command
 requires either the `-j' argument or an extra stack installation step of
 cloning the v21\_0\_0 tag as current first:\\
@@ -737,7 +731,7 @@ The provided version number should be available in the shared stack.
 {\footnotesize
 There is no v21\_0\_0 tag in the shared stack, however developers have
 been using the tag for release candidate v21\_0\_0\_rc1 instead when a
-v21 stack is needed. ~v21\_0\_0\_rc1 became v21\_0\_0 and they are
+v21 stack is needed. ~v21\_0\_0\_rc1 became v21\_0\_0, and they are
 equivalent:\\
 
 \begin{verbatim}
@@ -860,12 +854,20 @@ The user is satisfied that the required information is available.
   Actual Result \\
 {\footnotesize
 The documentation for the following are all available on the front page
-or linked from the front page:\\[2\baselineskip]* Release notes:
-https://pipelines.lsst.io/v/v21\_0\_0/releases/v21\_0\_0.html\#release-latest\\
-* Installation instructions:
-https://pipelines.lsst.io/v/v21\_0\_0/index.html\#installation\\
-* Getting started information:
-https://pipelines.lsst.io/v/v21\_0\_0/index.html\#getting-started\\
+or linked from the front page:
+
+\begin{itemize}
+\tightlist
+\item
+  Release notes:
+  https://pipelines.lsst.io/v/v21\_0\_0/releases/v21\_0\_0.html\#release-latest
+\item
+  Installation instructions:
+  https://pipelines.lsst.io/v/v21\_0\_0/index.html\#installation
+\item
+  Getting started information:
+  https://pipelines.lsst.io/v/v21\_0\_0/index.html\#getting-started
+\end{itemize}
 
 }
 \begin{tabular}{p{2cm}p{14cm}}
