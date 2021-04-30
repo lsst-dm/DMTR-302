@@ -1,8 +1,8 @@
 % generated from JIRA project LVV
-% using template at /Users/womullan/LSSTgit/docsteady/docsteady/templates/tpr.latex.jinja2.
-% using docsteady version 2.0.post11+g001b6f3.d20210218
+% using template at /usr/share/miniconda/envs/docsteady-env/lib/python3.7/site-packages/docsteady/templates/tpr.latex.jinja2.
+% using docsteady version 2.1.4
 % Please do not edit -- update information in Jira instead
-\documentclass[dm,lsstdraft,STR,toc]{lsstdoc}
+\documentclass[DM,lsstdraft,STR,toc]{lsstdoc}
 \usepackage{geometry}
 \usepackage{longtable,booktabs}
 \usepackage{enumitem}
@@ -31,7 +31,7 @@
 
 \title{LDM-503-13a: Science Pipelines Fall 2020 Release Test Plan and Report}
 \setDocRef{\lsstDocType-\lsstDocNum}
-\date{ 2021-04-09 }
+\date{ 2021-04-30 }
 \author{ Yusra AlSayyad }
 
 \input{history_and_info.tex}
@@ -56,8 +56,8 @@ The most recent change to the document repository was on \vcsDate.
 \label{sect:objectives}
 
  This test plan checks for the successful release of the Fall 2020
-release of the LSST Science Pipelines (Pipelines release version
-21.0.0).\\[2\baselineskip]It will demonstrate that:\\[2\baselineskip]
+release of the LSST Science Pipelines version 21.0.0\\[2\baselineskip]It
+will demonstrate that:\\
 
 \begin{itemize}
 \tightlist
@@ -66,18 +66,17 @@ release of the LSST Science Pipelines (Pipelines release version
   distribution channels;
 \item
   Release documentation, including release notes and a characterization
-  report, are available on the LSST Pipelines documentation website
+  report, are available on the Pipelines documentation website
   (https://pipelines.lsst.io/);
 \item
   An end-user can follow standard instructions to install the release
   onto some representative system;
 \item
-  The release is installed into the ``shared stack'' on the lsst-dev
-  shared developer systems and the Verification Cluster at the LSST Data
-  Facility;
+  The release is installed into the ``shared stack'' on the lsst-devl
+  shared developer systems at the Rubin Data Facility;
 \item
-  The lsst\_dm\_stack\_demo test package executes successfully in the
-  context of the release.
+  The pipelines\_check test package executes successfully in the context
+  of the release.
 \end{itemize}
 
 This test plan does not, in itself, verify the scientific integrity or
@@ -87,7 +86,7 @@ performance have been followed.\\[2\baselineskip]
 
 \subsection{Scope}\label{scope}
 
-The overall strategy for testing and verification within LSST Data
+The overall strategy for testing and verification within Rubin Data
 Management is described in \citeds{LDM-503}.\\
 This test plan specifically verifies successful completion of milestone
 LDM-503-13a, which refers to the Fall 2020 release of the LSST Science
@@ -98,6 +97,22 @@ Pipelines.
 \subsection{System Overview}
 \label{sect:systemoverview}
 
+ The LSST Science Pipelines comprise the scientific algorithms that will
+be used to process data for the Rubin Observatory Legacy Survey of Space
+and Time (Rubin's LSST), ~arranged into executable pipelines by means of
+the LSST ``task'' framework. They also include execution middleware that
+is common across execution environments (for example, the ``Data
+Butler'' I/O abstraction is included, but schedulers or workflow
+management for specific clusters is not), and ``camera packages'', which
+adapt and configure the algorithms for use with specific
+instrumentation.\\[2\baselineskip]
+
+\subsection{\texorpdfstring{Applicable Documents\\
+}{Applicable Documents }}\label{applicable-documents}
+
+\citeds{LDM-503} Data Management Test Plan\\
+\citeds{LDM-151} Data Management Science Pipelines Design\\
+\citeds{LSE-61} Data Management System Requirements
 
 
 \subsection{Document Overview}
@@ -106,6 +121,7 @@ Pipelines.
 This document was generated from Jira, obtaining the relevant information from the
 \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82}
 ~Jira Test Plan and related Test Cycles (
+\href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C171}{LVV-C171}
 ).
 
 Section \ref{sect:intro} provides an overview of the test campaign, the system under test (\product{}),
@@ -118,7 +134,7 @@ Section \ref{sect:overview} provides a summary of the test results, including an
 an overall assessment statement and suggestions for possible improvements.
 Section \ref{sect:detailedtestresults} provides detailed results for each step in each test case.
 
-The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82} in Jira is \textbf{ Draft }.
+The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82} in Jira is \textbf{ Approved }.
 
 \subsection{References}
 \label{sect:references}
@@ -137,6 +153,19 @@ The current status of test plan \href{https://jira.lsstcorp.org/secure/Tests.jsp
 
 \subsection{Verification Environment}
 \label{sect:hwconf}
+  Several of the tests described in this plan are agnostic of environment:
+they involve checking that certain content has been properly published.
+This can be performed from any internet-connected system with a web
+browser, and will, in this case, likely be executed from the tester's
+laptop.\\[2\baselineskip]Where tests require installation or execution
+of specific Science Pipelines components, this will be carried out on
+the ``lsst-devl'' shared developer infrastructure at the Rubin Data
+Facility. This infrastructure provides a number of powerful (24core,
+256GB RAM) systems accessible to Rubin developers. At time of writing,
+they are running CentOS 7.9.2009; in practice, any version of CentOS (or
+a similar operating system) is appropriate for this test plan, as long
+as it complies with the published installation prerequisites of the LSST
+Science Pipelines.
 
 
 
@@ -166,6 +195,35 @@ The personnel involved in the test campaign is shown in the following table.
 \hline
 \multicolumn{2}{r}{T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82} owner:} &
 \multicolumn{2}{l}{\textbf{ Yusra AlSayyad } }\\\hline
+\multicolumn{2}{r}{T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C171}{LVV-C171} owner:} &
+\multicolumn{2}{l}{\textbf{
+Yusra AlSayyad }
+} \\\hline
+\textbf{Test Cases} & \textbf{Assigned to} & \textbf{Executed by} & \textbf{Additional Test Personnel} \\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T362}{LVV-T362}
+& {\small Yusra AlSayyad } & {\small Yusra AlSayyad } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1601}{LVV-T1601}
+& {\small Yusra AlSayyad } & {\small Yusra AlSayyad } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T363}{LVV-T363}
+& {\small Yusra AlSayyad } & {\small Yusra AlSayyad } &
+\begin{minipage}[]{6cm}
+\smallskip
+{\small  }
+\medskip
+\end{minipage}
+\\ \hline
 \end{longtable}
 }
 
@@ -181,7 +239,40 @@ The personnel involved in the test campaign is shown in the following table.
 \begin{longtable}{p{2cm}cp{2.3cm}p{8.6cm}p{2.3cm}}
 \toprule
 \multicolumn{2}{r}{ T. Plan \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testPlan/LVV-P82}{LVV-P82}:} &
-\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-13a: Science Pipelines Fall 2020 Release }} & Draft \\\hline
+\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-13a: Science Pipelines Fall 2020 Release }} & Approved \\\hline
+\multicolumn{2}{r}{ T. Cycle \href{https://jira.lsstcorp.org/secure/Tests.jspa\#/testCycle/LVV-C171}{LVV-C171}:} &
+\multicolumn{2}{p{10.9cm}}{\textbf{ LDM-503-13a: Science Pipelines Fall 2020 Release }} & Done \\\hline
+\textbf{Test Cases} &  \textbf{Ver.} & \textbf{Status} & \textbf{Comment} & \textbf{Issues} \\\toprule
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T362}{LVV-T362}
+&  1
+& Pass w/ Deviation &
+\begin{minipage}[]{9cm}
+\smallskip
+Test completed with deviation; see linked issue
+\medskip
+\end{minipage}
+&   \href{https://jira.lsstcorp.org/browse/DM-29904}{DM-29904}
+\\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1601}{LVV-T1601}
+&  1
+& Pass w/ Deviation &
+\begin{minipage}[]{9cm}
+\smallskip
+Test completed with deviation
+\medskip
+\end{minipage}
+&   \href{https://jira.lsstcorp.org/browse/DM-28988}{DM-28988}
+\href{https://jira.lsstcorp.org/browse/DM-29963}{DM-29963}
+\\\hline
+\href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T363}{LVV-T363}
+&  1
+& Pass &
+\begin{minipage}[]{9cm}
+\smallskip
+Test is completed
+\medskip
+\end{minipage}
+&   \\\hline
 \caption{Test Campaign Summary}
 \label{table:summary}
 \end{longtable}
@@ -190,7 +281,18 @@ The personnel involved in the test campaign is shown in the following table.
 \subsection{Overall Assessment}
 \label{sect:overallassessment}
 
-Not yet available.
+All the tests described in this plan were completed
+successfully.\\[2\baselineskip]Two minor deviations were encountered.\\
+(1) This release marks the full replacement of the lsst\_dm\_stack\_demo
+package with the pipelines\_check package. The instructions on the
+pipelines\_check README were missing a step if followed directly from
+the stack installation procedure in the previous test case step. This
+was resolved on DM-29904.\\
+(2) The shared stack maintained for developers at the Data Facility
+included a tagged version for the v21 release candidate, it did not
+contain a tagged version for the final v21 release. This distinction is
+minor because the two versions are equivalent, but this was resolved on
+DM-29963.
 
 \subsection{Recommended Improvements}
 \label{sect:recommendations}
@@ -200,6 +302,635 @@ Not yet available.
 \newpage
 \section{Detailed Test Results}
 \label{sect:detailedtestresults}
+
+\subsection{Test Cycle LVV-C171 }
+
+Open test cycle {\it \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testrun/LVV-C171}{LDM-503-13a: Science Pipelines Fall 2020 Release}} in Jira.
+
+Test Cycle name: LDM-503-13a: Science Pipelines Fall 2020 Release\\
+Status: Done
+
+This test cycle describes tests performed on the Science Pipelines Fall
+2020 (v21.0.0) release, ensuring that the release is properly
+identified, documented, distributed, installable and tested.
+
+\subsubsection{Software Version/Baseline}
+A web browser is required for inspecting release artifacts published to
+the web.\\[2\baselineskip]Testing the software installation procedures,
+and demonstrating that the release's integration tests can be executed
+successfully, require a supported operating system with the documented
+prerequisites of the release installed. This will be carried out on the
+''lsst-dev'' shared developer systems at the LSST Data
+Facility.\\[2\baselineskip]At time of writing, Data Facility systems run
+CentOS Linux release 7.9.2009, and it is anticipated that this will be a
+supported platform for the Science Pipelines
+release.\\[2\baselineskip]Science Pipelines prerequisites are documented
+at \href{https://pipelines.lsst.io/}{pipelines.lsst.io}; all of these
+must be installed.\\[2\baselineskip]It is possible that the software
+release will involve a reorganization of documentation describing
+prerequisites; in this case, the documentation corresponding to the new
+release must be consulted.
+
+\subsubsection{Configuration}
+No specific configuration is required beyond the availability of test
+systems with the prerequisite software, described above, installed.
+
+\subsubsection{Test Cases in LVV-C171 Test Cycle}
+
+\paragraph{ LVV-T362 - Installation of the LSST Science Pipelines Payloads }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T362}{\textit{ LVV-T362 } }
+test case in Jira.
+
+This test will check that:
+
+\begin{itemize}
+\tightlist
+\item
+  The Alert Production Pipeline payload is available for installation
+  from documented channels;
+\item
+  The Data Release Production Pipeline payload is available for
+  installation from documented channels;
+\item
+  The Calibration Products Production Pipeline payload is available for
+  installation from documented channels;
+\item
+  These payloads can be installed on systems at the LSST Data Facility
+  following available documentation;
+\item
+  The installed pipeline payloads are capable of successfully executing
+  basic integration tests.
+\end{itemize}
+
+Note that this test assumes a 2018-era packaging of the Science
+Pipelines software, in which all the above payloads are represented by a
+single ``meta-package'', lsst\_distrib.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Pass w/ Deviation }
+
+Final comment:\\Test completed with deviation; see linked issue
+
+Issues found during the execution of LVV-T362 test case:
+
+\begin{itemize}
+\item \href{https://jira.lsstcorp.org/browse/DM-29904}{DM-29904}~~Instruction on pipelines\_check README are incomplete
+
+\end{itemize}
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+The LSST Science Pipelines, described by the lsst\_distrib meta-package,
+should be installed following the documentation available at
+https://pipelines.lsst.io/. The suggested Conda environment will be used
+to ensure that a supported execution environment is available.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Detailed output will depend on the installation method chosen, but will
+confirm the successful installation of the Science Pipelines.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The Science Pipelines were installed on the shared server
+lsst-devl01.ncsa.illinois.edu which is running CentOS 7.9.2009, using
+the procedure described in
+https://pipelines.lsst.io/install/newinstall.html\\[2\baselineskip]Following
+the instructions in step 2 and 3, I made an installation directory and
+ran newinstall.sh:\\
+
+\begin{verbatim}
+mkdir -p lsst_stack
+cd lsst_stack
+curl -OL https://raw.githubusercontent.com/lsst/lsst/21.0.0/scripts/newinstall.sh
+bash newinstall.sh -ct
+\end{verbatim}
+
+answering `'yes'' when prompted to install
+miniconda:\\[2\baselineskip]\textgreater{} Would you like us to install
+Miniconda distribution (if unsure, say yes)?yes\\[2\baselineskip]Then
+following step 4, I installed the Science Pipelines:\\
+
+\begin{verbatim}
+source loadLSST.bash # for bash
+eups distrib install -t v21_0_0 lsst_distrib
+\end{verbatim}
+
+\begin{verbatim}
+curl -sSL https://raw.githubusercontent.com/lsst/shebangtron/master/shebangtron | python
+setup lsst_distrib
+\end{verbatim}
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+The lsst\_distrib top-level metapackage will be enabled. Assuming that
+the software has been installed at
+\$\{LSST\_DIR\}:\\[2\baselineskip]\hspace*{0.333em} ~ ~ ~source
+\$\{LSST\_DIR\}/loadLSST.bash\\
+\hspace*{0.333em} ~ ~ ~setup lsst\_distrib
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Nothing is printed. The command\\[2\baselineskip]\hspace*{0.333em} ~eups
+list -s lsst\_distrib\\[2\baselineskip]may be used to confirm that the
+correct version of the codebase has been installed.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 lsst\_stack{]}\$ source
+/project/yusra/LVV-C171/TVV-T362/lsst\_stack/loadLSST.bash\\
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 lsst\_stack{]}\$ setup
+lsst\_distrib\\
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 lsst\_stack{]}\$ eups list
+-s lsst\_distrib\\
+21.0.0+973e4c9e85 current v21\_0\_0 setup\\[2\baselineskip]
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+The ``LSST Stack Demo'' package will be downloaded onto the test system
+from https://github.com/lsst/pipelines\_check/releases. The version
+corresponding to to the version of the Science Pipelines under test
+should be chosen.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Depends on the tool selected by the user for downloading.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The 21.0.0 pipelines\_check was downloaded from
+https://github.com/lsst/pipelines\_check/releases/tag/21.0.0 by
+executing the command:\\[2\baselineskip](lsst-scipipe-cb4e2dc)
+{[}yusra@lsst-devl01 TVV-T362{]}\$ curl -OL
+https://github.com/lsst/pipelines\_check/archive/refs/tags/21.0.0.tar.gz\\
+\hspace*{0.333em}\hspace*{0.333em}\% Total~ ~~\% Received \%
+Xferd~~Average Speed ~~Time~ ~~Time ~ ~~Time~~Current\\
+\hspace*{0.333em} ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~Dload~~Upload ~~Total
+~~Spent~ ~~Left~~Speed\\
+100 ~~138~~100 ~~138~ ~~0 ~ ~~0~ ~~862~ ~ ~~0 --:--:-- --:--:-- --:--:--
+~~862\\
+100 25.8M~ ~~0 25.8M~ ~~0 ~ ~~0~~13.6M~ ~ ~~0 --:--:--~~0:00:01 --:--:--
+16.8M\\[2\baselineskip]
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 4 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+The stack demo package is uncompressed into a directory \$\{DEMO\_DIR\}.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Depends on options given to the tar command. Should confirm the
+availability of the stack demo source.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+\begin{verbatim}
+The demo package was uncompressed by running:
+
+$ tar -xzf 21.0.0.tar.gzÂ 
+\end{verbatim}
+
+There is now an uncompressed directory called pipelines\_check-21.0.0.
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 5 & Step Execution Status: \textbf{ Pass w/ Deviation } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+The demo package will be executed by following the instructions in its
+README file.~
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Successful execution will result in the string ``Ok'' being returned.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The pipeline\_check completed successfully with a minor deviation of the
+instructions on the package README. ~The instructions for execution were
+to\\
+
+\begin{verbatim}
+$ source $LSST_HOME/loadLSST.sh
+$ setup -r .
+$ ./bin/run_demo.sh
+\end{verbatim}
+
+loadLSST is spelled loadLSST.bash for bash, and the `setup' command
+requires either the `-j' argument or an extra stack installation step of
+cloning the v21\_0\_0 tag as current
+first:~\\[2\baselineskip](lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01
+pipelines\_check-21.0.0{]}\$ setup -r .\\
+setup: in file
+/project/yusra/LVV-C171/TVV-T362/pipelines\_check-21.0.0/ups/pipelines\_check.table:
+Product pipe\_tasks not found\\
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
+eups list -s pipe\_tasks\\
+21.0.0+44ca056b81 v21\_0\_0 setup\\
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
+eups tags --clone v21\_0\_0 current\\
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
+setup -r .\\
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
+./bin/run\_demo.sh\\
++ `{[}' `!' -f DATA\_REPO/butler.yaml `{]}'\\
++ butler create DATA\_REPO\\
++ butler register-instrument DATA\_REPO
+lsst.obs.subaru.HyperSuprimeCam\\
++ `{[}' `!' -d DATA\_REPO/HSC/calib `{]}'\\
++ butler import DATA\_REPO
+/project/yusra/LVV-C171/TVV-T362/pipelines\_check-21.0.0/input\_data
+--export-file
+/project/yusra/LVV-C171/TVV-T362/pipelines\_check-21.0.0/input\_data/export.yaml
+--skip-dimensions instrument,physical\_filter,detector\\
+\textless{} log snipped\textgreater{}\\
+INFO 2021-04-26T23:02:25.852-0500 calibrate (calibrate:\{band: r,
+instrument: HSC, detector: 10, physical\_filter: HSC-R, visit\_system:
+0, visit: 903342\})(calibrate.py:748)- Photometric zero-point:
+30.549066\\
++ pipetask qgraph -b DATA\_REPO/butler.yaml --input
+HSC/calib,HSC/raw/all,refcats -p
+/project/yusra/LVV-C171/TVV-T362/lsst\_stack/stack/miniconda3-py37\_4.8.2-cb4e2dc/Linux64/pipe\_tasks/21.0.0+44ca056b81/pipelines/DRP.yaml:processCcd
+--instrument lsst.obs.subaru.HyperSuprimeCam --output-run
+demo\_collection\_1\\
+ctrl.mpexec.cmdLineFwk INFO: QuantumGraph contains 3 quanta for 3
+tasks\\
+(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01
+pipelines\_check-21.0.0{]}\$\\[2\baselineskip]
+
+}
+
+\paragraph{ LVV-T1601 - Science Pipelines available on developer hardware }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T1601}{\textit{ LVV-T1601 } }
+test case in Jira.
+
+This test will check that a given release of the LSST Science Pipelines
+is available for use in a ``shared stack'' on developer infrastructure.
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Pass w/ Deviation }
+
+Final comment:\\Test completed with deviation
+
+Issues found during the execution of LVV-T1601 test case:
+
+\begin{itemize}
+\item \href{https://jira.lsstcorp.org/browse/DM-28988}{DM-28988}~~Update https://developer.lsst.io/services/software.html\#software-stack
+
+\item \href{https://jira.lsstcorp.org/browse/DM-29963}{DM-29963}~~Build version 21.0.0 in the shared stack
+
+\end{itemize}
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Consult the LSST Developer Guide (http://developer.lsst.io/) to
+establish:\\[2\baselineskip]
+
+\begin{itemize}
+\tightlist
+\item
+  An appropriate hostname and login instructions for the shared
+  developer infrastructure at the LSST Data Facility;
+\item
+  Instructions for initializing the shared stack on the developer
+  infrastructure.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The Developer Guide clearly presents information about connecting to and
+using shared infrastructure.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+* Instructions for logging into the head nodes lsst-devl0* at the NCSA
+development cluster are available at
+https://developer.lsst.io/services/lsst-login.html\\
+* Instructions for accessing the shared stack are available at
+https://developer.lsst.io/services/software.html\#software-stack
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Connect to the shared infrastructure following the Developer Guide
+instructions.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+A shell prompt on a shared machine.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+login successful and a shell prompt is available.~
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Initialize the LSST environment following the Developer Guide
+instructions.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Example Code \\
+{\footnotesize
+source /software/lsstsw/stack/loadLSST.bash
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+No errors are shown.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The shared stack for the v21 release is available at
+~/software/lsstsw/stack\_20200922. The command executed
+was:\\[2\baselineskip]source
+/software/lsstsw/stack\_20200922/loadLSST.bash\\[2\baselineskip]
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 4 & Step Execution Status: \textbf{ Pass w/ Deviation } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+List available software products using EUPS, and check that the release
+under test is available.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Example Code \\
+{\footnotesize
+eups list lsst\_distrib \textbar{} grep vXX\_XX\_XX ~\# replace
+XX\_XX\_XX with the version number of the release under test
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The provided version number should be available in the shared stack.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+There is no v21\_0\_0 tag in the shared stack, however developers have
+been using the tag for release candidate v21\_0\_0\_rc1 instead when a
+v21 stack is needed. ~v21\_0\_0\_rc1 became v21\_0\_0 and they are
+equivalent.~\\[2\baselineskip](lsst-scipipe) {[}yusra@lsst-devl01
+TVV-T362{]}\$ eups list lsst\_distrib \textbar{} grep v21\_0\_0\\
+20.0.0-3-gdc8c9d3+973e4c9e85 \textbf{v21\_0\_0}\_rc1\\[2\baselineskip]
+
+}
+
+\paragraph{ LVV-T363 - Science Pipelines Release Documentation }\mbox{}\\
+
+Version \textbf{1}.
+Open  \href{https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T363}{\textit{ LVV-T363 } }
+test case in Jira.
+
+This test will check:
+
+\begin{itemize}
+\tightlist
+\item
+  That a particular Science Pipelines release is adequately described by
+  documentation at the https://pipelines.lsst.io/ site;
+\item
+  That the Science Pipelines release is accompanied by a
+  characterization report which describes its scientific performance.
+\end{itemize}
+
+\textbf{ Preconditions}:\\
+
+
+Execution status: {\bf Pass }
+
+Final comment:\\Test is completed
+
+
+Detailed steps results:
+
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 1 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Load the Science Pipelines website at https://pipelines.lsst.io/.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The website is displayed.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The website https://pipelines.lsst.io is displayed~
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 2 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Identify documentation for the release under test. This should be
+clearly labelled on the documentation site.\\[2\baselineskip]If the
+latest release is being tested, the default page loaded when visiting
+https://pipelines.lsst.io/ should be the documentation
+required.\\[2\baselineskip]If this test is for another release, the site
+should present clear instructions for changing the edition (or version)
+of the documentation being examined, and documentation for the release
+under test should be available.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The documentation for the release under test is displayed.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+https://pipelines.lsst.io is for the release under test and clearly
+states: ''This documentation covers version \textbf{v21\_0\_0''~}\\
+It was also simple to navigate to ``Other Versions'', and click on
+v21\_0\_0 and land on the permanent page address for this release:
+https://pipelines.lsst.io/v/v21\_0\_0/index.html\\[2\baselineskip]
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 3 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Inspect the documentation to ensure that it refers to the release under
+test, and that it provides:
+
+\begin{itemize}
+\tightlist
+\item
+  Release notes, describing changes in this release relative to the
+  previous;
+\item
+  Installation instructions, together with a list of supported platforms
+  and prerequisites;
+\item
+  Getting started information.
+\end{itemize}
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The user is satisfied that the required information is available.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The documentation for the following are all available on the front page
+or linked from the front page:\\[2\baselineskip]* Release notes:
+https://pipelines.lsst.io/v/v21\_0\_0/releases/v21\_0\_0.html\#release-latest\\
+* Installation instructions:
+https://pipelines.lsst.io/v/v21\_0\_0/index.html\#installation\\
+* Getting started information:
+https://pipelines.lsst.io/v/v21\_0\_0/index.html\#getting-started\\
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 4 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Locate the Characterization Metric Report corresponding to this release.
+It should be linked from the main release documentation.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+The user is satisfied that the report is available.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The Characterization Report for this release
+\href{https://ls.st/DMTR-281}{Characterization Metric Report
+(DMTR-281)}~ is clearly linked from the Release Notes:
+~https://pipelines.lsst.io/v/v21\_0\_0/releases/v21\_0\_0.html\#release-latest
+
+}
+\begin{tabular}{p{2cm}p{14cm}}
+\toprule
+Step 5 & Step Execution Status: \textbf{ Pass } \\ \hline
+\end{tabular}
+ Description \\
+{\footnotesize
+Verify that the characterization metric report describes the scientific
+performance of the release in terms of a selection of performance
+metrics drawn from high-level requirements documentation (the Science
+Requirements Document, LPM-17; the LSST System Requirements, LSE-29;
+and/or the Observatory System Specifications, LSE-30).
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Expected Result \\
+{\footnotesize
+Metric values describing the performance of the release, for example as
+computed by validate\_drp, are described in the report.
+
+}
+\hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
+  Actual Result \\
+{\footnotesize
+The Characterization Report includes the expected metrics.~
+
+}
+
 
 
 \input{appendix.tex}
