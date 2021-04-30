@@ -297,7 +297,7 @@ DM-29963.
 \subsection{Recommended Improvements}
 \label{sect:recommendations}
 
-Not yet available.
+No recommendations beyond the tickets filed
 
 \newpage
 \section{Detailed Test Results}
@@ -492,17 +492,15 @@ Depends on the tool selected by the user for downloading.
 {\footnotesize
 The 21.0.0 pipelines\_check was downloaded from
 https://github.com/lsst/pipelines\_check/releases/tag/21.0.0 by
-executing the command:\\[2\baselineskip](lsst-scipipe-cb4e2dc)
-{[}yusra@lsst-devl01 TVV-T362{]}\$ curl -OL
-https://github.com/lsst/pipelines\_check/archive/refs/tags/21.0.0.tar.gz\\
-\hspace*{0.333em}\hspace*{0.333em}\% Total~ ~~\% Received \%
-Xferd~~Average Speed ~~Time~ ~~Time ~ ~~Time~~Current\\
-\hspace*{0.333em} ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~Dload~~Upload ~~Total
-~~Spent~ ~~Left~~Speed\\
-100 ~~138~~100 ~~138~ ~~0 ~ ~~0~ ~~862~ ~ ~~0 --:--:-- --:--:-- --:--:--
-~~862\\
-100 25.8M~ ~~0 25.8M~ ~~0 ~ ~~0~~13.6M~ ~ ~~0 --:--:--~~0:00:01 --:--:--
-16.8M\\[2\baselineskip]
+executing the command:\\[2\baselineskip]
+
+\begin{verbatim}
+(lsst-scipipe-cb4e2dc) [yusra@lsst-devl01]$ curl -OL https://github.com/lsst/pipelines_check/archive/refs/tags/21.0.0.tar.gz
+% Total % Received % Xferd Average Speed Time Time Time Current
+Dload Upload Total Spent Left Speed
+100 138 100 138 0 0 862 0 --:--:-- --:--:-- --:--:-- 862
+100 25.8M 0 25.8M 0 0 13.6M 0 --:--:-- 0:00:01 --:--:-- 16.8M
+\end{verbatim}
 
 }
 \begin{tabular}{p{2cm}p{14cm}}
@@ -527,7 +525,7 @@ availability of the stack demo source.
 \begin{verbatim}
 The demo package was uncompressed by running:
 
-$ tar -xzf 21.0.0.tar.gzÂ 
+$ tar -xzf 21.0.0.tar.gz
 \end{verbatim}
 
 There is now an uncompressed directory called pipelines\_check-21.0.0.
@@ -564,45 +562,29 @@ $ ./bin/run_demo.sh
 
 loadLSST is spelled loadLSST.bash for bash, and the `setup' command
 requires either the `-j' argument or an extra stack installation step of
-cloning the v21\_0\_0 tag as current
-first:~\\[2\baselineskip](lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01
-pipelines\_check-21.0.0{]}\$ setup -r .\\
-setup: in file
-/project/yusra/LVV-C171/TVV-T362/pipelines\_check-21.0.0/ups/pipelines\_check.table:
-Product pipe\_tasks not found\\
-(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
-eups list -s pipe\_tasks\\
-21.0.0+44ca056b81 v21\_0\_0 setup\\
-(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
-eups tags --clone v21\_0\_0 current\\
-(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
-setup -r .\\
-(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01 pipelines\_check-21.0.0{]}\$
-./bin/run\_demo.sh\\
-+ `{[}' `!' -f DATA\_REPO/butler.yaml `{]}'\\
-+ butler create DATA\_REPO\\
-+ butler register-instrument DATA\_REPO
-lsst.obs.subaru.HyperSuprimeCam\\
-+ `{[}' `!' -d DATA\_REPO/HSC/calib `{]}'\\
-+ butler import DATA\_REPO
-/project/yusra/LVV-C171/TVV-T362/pipelines\_check-21.0.0/input\_data
---export-file
-/project/yusra/LVV-C171/TVV-T362/pipelines\_check-21.0.0/input\_data/export.yaml
---skip-dimensions instrument,physical\_filter,detector\\
-\textless{} log snipped\textgreater{}\\
-INFO 2021-04-26T23:02:25.852-0500 calibrate (calibrate:\{band: r,
-instrument: HSC, detector: 10, physical\_filter: HSC-R, visit\_system:
-0, visit: 903342\})(calibrate.py:748)- Photometric zero-point:
-30.549066\\
-+ pipetask qgraph -b DATA\_REPO/butler.yaml --input
-HSC/calib,HSC/raw/all,refcats -p
-/project/yusra/LVV-C171/TVV-T362/lsst\_stack/stack/miniconda3-py37\_4.8.2-cb4e2dc/Linux64/pipe\_tasks/21.0.0+44ca056b81/pipelines/DRP.yaml:processCcd
---instrument lsst.obs.subaru.HyperSuprimeCam --output-run
-demo\_collection\_1\\
-ctrl.mpexec.cmdLineFwk INFO: QuantumGraph contains 3 quanta for 3
-tasks\\
-(lsst-scipipe-cb4e2dc) {[}yusra@lsst-devl01
-pipelines\_check-21.0.0{]}\$\\[2\baselineskip]
+cloning the v21\_0\_0 tag as current first:\\
+
+\begin{verbatim}
+(lsst-scipipe-cb4e2dc) [yusra@lsst-devl01 pipelines_check-21.0.0]$ setup -r .
+setup: in file /project/yusra/LVV-C171/TVV-T362/pipelines_check-21.0.0/ups/pipelines_check.table: Product pipe_tasks not found
+(lsst-scipipe-cb4e2dc) [yusra@lsst-devl01 pipelines_check-21.0.0]$ eups list -s pipe_tasks
+21.0.0+44ca056b81 v21_0_0 setup
+(lsst-scipipe-cb4e2dc) [yusra@lsst-devl01 pipelines_check-21.0.0]$ eups tags --clone v21_0_0 current
+(lsst-scipipe-cb4e2dc) [yusra@lsst-devl01 pipelines_check-21.0.0]$ setup -r .
+(lsst-scipipe-cb4e2dc) [yusra@lsst-devl01 pipelines_check-21.0.0]$ ./bin/run_demo.sh
++ '[' '!' -f DATA_REPO/butler.yaml ']'
++ butler create DATA_REPO
++ butler register-instrument DATA_REPO lsst.obs.subaru.HyperSuprimeCam
++ '[' '!' -d DATA_REPO/HSC/calib ']'
++ butler import DATA_REPO /project/yusra/LVV-C171/TVV-T362/pipelines_check-21.0.0/input_data --export-file /project/yusra/LVV-C171/TVV-T362/pipelines_check-21.0.0/input_data/export.yaml --skip-dimensions instrument,physical_filter,detector
+
+<log snipped>
+
+INFO 2021-04-26T23:02:25.852-0500 calibrate (calibrate:{band: r, instrument: HSC, detector: 10, physical_filter: HSC-R, visit_system: 0, visit: 903342})(calibrate.py:748)- Photometric zero-point: 30.549066
++ pipetask qgraph -b DATA_REPO/butler.yaml --input HSC/calib,HSC/raw/all,refcats -p /project/yusra/LVV-C171/TVV-T362/lsst_stack/stack/miniconda3-py37_4.8.2-cb4e2dc/Linux64/pipe_tasks/21.0.0+44ca056b81/pipelines/DRP.yaml:processCcd --instrument lsst.obs.subaru.HyperSuprimeCam --output-run demo_collection_1
+ctrl.mpexec.cmdLineFwk INFO: QuantumGraph contains 3 quanta for 3 tasks
+(lsst-scipipe-cb4e2dc) [yusra@lsst-devl01 pipelines_check-21.0.0]$
+\end{verbatim}
 
 }
 
@@ -663,11 +645,16 @@ using shared infrastructure.
 \hdashrule[0.5ex]{\textwidth}{1pt}{3mm}
   Actual Result \\
 {\footnotesize
-* Instructions for logging into the head nodes lsst-devl0* at the NCSA
-development cluster are available at
-https://developer.lsst.io/services/lsst-login.html\\
-* Instructions for accessing the shared stack are available at
-https://developer.lsst.io/services/software.html\#software-stack
+\begin{itemize}
+\tightlist
+\item
+  Instructions for logging into the head nodes lsst-devl0* at the NCSA
+  development cluster are available at
+  https://developer.lsst.io/services/lsst-login.html
+\item
+  Instructions for accessing the shared stack are available at
+  https://developer.lsst.io/services/software.html\#software-stack
+\end{itemize}
 
 }
 \begin{tabular}{p{2cm}p{14cm}}
@@ -718,9 +705,8 @@ No errors are shown.
   Actual Result \\
 {\footnotesize
 The shared stack for the v21 release is available at
-~/software/lsstsw/stack\_20200922. The command executed
-was:\\[2\baselineskip]source
-/software/lsstsw/stack\_20200922/loadLSST.bash\\[2\baselineskip]
+~/software/lsstsw/stack\_20200922. The command executed was:\\
+\texttt{source\ /software/lsstsw/stack\_20200922/loadLSST.bash}
 
 }
 \begin{tabular}{p{2cm}p{14cm}}
@@ -752,9 +738,12 @@ The provided version number should be available in the shared stack.
 There is no v21\_0\_0 tag in the shared stack, however developers have
 been using the tag for release candidate v21\_0\_0\_rc1 instead when a
 v21 stack is needed. ~v21\_0\_0\_rc1 became v21\_0\_0 and they are
-equivalent.~\\[2\baselineskip](lsst-scipipe) {[}yusra@lsst-devl01
-TVV-T362{]}\$ eups list lsst\_distrib \textbar{} grep v21\_0\_0\\
-20.0.0-3-gdc8c9d3+973e4c9e85 \textbf{v21\_0\_0}\_rc1\\[2\baselineskip]
+equivalent:\\
+
+\begin{verbatim}
+(lsst-scipipe) [yusra@lsst-devl01]$ eups list lsst_distrib | grep v21_0_0
+20.0.0-3-gdc8c9d3+973e4c9e85 v21_0_0_rc1
+\end{verbatim}
 
 }
 
